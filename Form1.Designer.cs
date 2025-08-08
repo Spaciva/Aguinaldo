@@ -30,13 +30,9 @@
         {
             lbltitu = new Label();
             lblSal = new Label();
-            label3 = new Label();
             btnAguinaldo = new Button();
             txtsalary = new TextBox();
-            combselec = new ComboBox();
-            rdbmas = new RadioButton();
             lbltex = new Label();
-            rdbmenos = new RadioButton();
             group = new GroupBox();
             timeact = new DateTimePicker();
             timeini = new DateTimePicker();
@@ -68,20 +64,10 @@
             lblSal.Text = "Ingrese Salario Mensual";
             lblSal.Click += lblSal_Click;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(43, 145);
-            label3.Name = "label3";
-            label3.Size = new Size(293, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Si ha trabajado mas de un año  seleccione una opcion ";
-            label3.Click += label3_Click;
-            // 
             // btnAguinaldo
             // 
             btnAguinaldo.BackColor = Color.FromArgb(255, 255, 128);
-            btnAguinaldo.Location = new Point(43, 406);
+            btnAguinaldo.Location = new Point(44, 396);
             btnAguinaldo.Name = "btnAguinaldo";
             btnAguinaldo.Size = new Size(141, 34);
             btnAguinaldo.TabIndex = 3;
@@ -96,27 +82,6 @@
             txtsalary.Size = new Size(158, 23);
             txtsalary.TabIndex = 5;
             // 
-            // combselec
-            // 
-            combselec.FormattingEnabled = true;
-            combselec.Items.AddRange(new object[] { "De 1 a 3 años" });
-            combselec.Location = new Point(342, 142);
-            combselec.Name = "combselec";
-            combselec.Size = new Size(121, 23);
-            combselec.TabIndex = 6;
-            combselec.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // rdbmas
-            // 
-            rdbmas.AutoSize = true;
-            rdbmas.Location = new Point(66, 101);
-            rdbmas.Name = "rdbmas";
-            rdbmas.Size = new Size(174, 19);
-            rdbmas.TabIndex = 7;
-            rdbmas.Text = "Ha trabajado mas de un año";
-            rdbmas.UseVisualStyleBackColor = true;
-            rdbmas.CheckedChanged += rdbdiastrab_CheckedChanged;
-            // 
             // lbltex
             // 
             lbltex.AutoSize = true;
@@ -126,19 +91,6 @@
             lbltex.TabIndex = 10;
             lbltex.Text = "Seleccione si ha trabajado menos de un año";
             // 
-            // rdbmenos
-            // 
-            rdbmenos.AutoSize = true;
-            rdbmenos.Checked = true;
-            rdbmenos.Location = new Point(268, 101);
-            rdbmenos.Name = "rdbmenos";
-            rdbmenos.Size = new Size(188, 19);
-            rdbmenos.TabIndex = 11;
-            rdbmenos.TabStop = true;
-            rdbmenos.Text = "Ha trabajado menos de un año";
-            rdbmenos.UseVisualStyleBackColor = true;
-            rdbmenos.CheckedChanged += rdbmenos_CheckedChanged;
-            // 
             // group
             // 
             group.Controls.Add(timeact);
@@ -146,7 +98,7 @@
             group.Controls.Add(label1);
             group.Controls.Add(lbldias);
             group.Controls.Add(lbltex);
-            group.Location = new Point(12, 179);
+            group.Location = new Point(12, 114);
             group.Name = "group";
             group.Size = new Size(551, 165);
             group.TabIndex = 12;
@@ -154,7 +106,7 @@
             // 
             // timeact
             // 
-            timeact.Location = new Point(327, 99);
+            timeact.Location = new Point(324, 99);
             timeact.Name = "timeact";
             timeact.Size = new Size(212, 23);
             timeact.TabIndex = 15;
@@ -189,7 +141,7 @@
             // lblresultado
             // 
             lblresultado.AutoSize = true;
-            lblresultado.Location = new Point(252, 416);
+            lblresultado.Location = new Point(227, 406);
             lblresultado.Name = "lblresultado";
             lblresultado.Size = new Size(109, 15);
             lblresultado.TabIndex = 13;
@@ -218,13 +170,9 @@
             ClientSize = new Size(598, 506);
             Controls.Add(lblresultado);
             Controls.Add(group);
-            Controls.Add(combselec);
             Controls.Add(txtsalary);
             Controls.Add(btnAguinaldo);
-            Controls.Add(rdbmenos);
             Controls.Add(lblSal);
-            Controls.Add(label3);
-            Controls.Add(rdbmas);
             Controls.Add(lbltitu);
             Name = "Form1";
             Text = "Form1";
@@ -239,18 +187,14 @@
 
         private Label lbltitu;
         private Label lblSal;
-        private Label label3;
         private Button button1;
       //  private TextBox txtfechai;
      //   private TextBox textBox2;
         private ComboBox comboBox1;
         private Button btnCalcular;
-        private ComboBox combselec;
         private Button btnAguinaldo;
         private TextBox txtsalary;
-        private RadioButton rdbmas;
         private Label lbltex;
-        private RadioButton rdbmenos;
         private GroupBox group;
         private Label lbldias;
         private Label label1;

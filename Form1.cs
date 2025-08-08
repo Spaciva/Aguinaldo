@@ -1,4 +1,4 @@
-
+﻿
 using System.Windows.Forms;
 
 namespace Aguinaldo
@@ -40,79 +40,61 @@ namespace Aguinaldo
         private void btnAguinaldo_Click(object sender, EventArgs e)
 
         {
-            // String op = combselec.SelectedItem.ToString();
             try
-            {
-                decimal salv;
-                decimal salario = 0;
-                decimal salday = 0;
-                decimal aguinaldo = 0;
+{
+    decimal salario;
+    if (decimal.TryParse(txtsalary.Text, out salario))
+    {
+        decimal salday = salario / 30;
+        decimal aguinaldo = 0;
 
+        // Fecha actual fija: 12 de diciembre del año actual
+        DateTime fechaact = new DateTime(DateTime.Now.Year, 12, 12);
+        timeact.Value = fechaact; 
+        timeact.Enabled = false; // Desactivar edición
 
-                if (decimal.TryParse(txtsalary.Text, out salario))
-                {
-                    salday = salario / 30;
-                    //lblresultado.Text = "Tu salario diario es"+ salday;
+        // Fecha de inicio ingresada por el usuario
+        DateTime fechain = timeini.Value;
 
-                    if (rdbmas.Checked)
+        // Calcular días trabajados
+        int diasTrabajados = (fechaact.Date - fechain.Date).Days+1;
+        MessageBox.Show("Días trabajados: " + diasTrabajados);
 
-                    {
-                        timeact.Enabled = false;
-                        timeini.Enabled = false;
-                        String op = combselec.SelectedItem.ToString();
+        // Calcular años trabajados
+        decimal aniosTrabajados = diasTrabajados / 365;
 
-                        switch (op)
-                        {
+        // Determinar categoría
+        if (aniosTrabajados >= 1 && aniosTrabajados < 3)
+        {
+            aguinaldo = 15 * salday;
+        }
+        else if (aniosTrabajados >= 3 && aniosTrabajados < 10)
+        {
+            aguinaldo = 19 * salday;
+        }
+        else if (aniosTrabajados >= 10)
+        {
+            aguinaldo = 21 * salday;
+        }
+        else
+        {
+            // Menos de 1 año → proporcional
+            aguinaldo = (salday * 15) * (diasTrabajados / 365m);
+        }
 
-                            case "De 1 a 3 a�os":
-                                aguinaldo = 15 * salday;
-                                aguinaldo = Math.Round(aguinaldo, 2);
-                                aguinaldo = aguinaldo + salario;
-                                lblresultado.Text = "Su aguinaldo a recibir es de: $ " + aguinaldo;
-                                break;
-                            case "De 3 a 10 a�os":
-                                aguinaldo = 19 * salday;
-                                aguinaldo = Math.Round(aguinaldo, 2);
-                                aguinaldo = aguinaldo + salario;
-                                lblresultado.Text = "Su aguinaldo a recibir es de: $ " + aguinaldo; ;
-                                break;
-
-                            case "De 10 a�os en adelante":
-                                aguinaldo = 21 * salday;
-                                aguinaldo = Math.Round(aguinaldo, 2);
-                                aguinaldo = aguinaldo + salario;
-                                lblresultado.Text = "Su aguinaldo a recibir es de: $ " + aguinaldo;
-                                break;
-
-                        }
-
-                    }
-
-                    if (rdbmenos.Checked)
-                    {
-
-                        DateTime fechain = timeini.Value;
-                        DateTime fechaact = timeact.Value;
-
-                        TimeSpan diastraba = fechaact - fechain;
-                        int enterosdias = diastraba.Days;
-                        MessageBox.Show("Dias trabajados: " + enterosdias);
-                        aguinaldo = (salday * 15) * ((decimal)enterosdias / 365);
-                        aguinaldo = aguinaldo + salario;
-                        lblresultado.Text = "Su aguinaldo a recibir es de: $ " + Math.Round(aguinaldo, 2);
-
-
-                    }
-
-
-                }
-            }
-
-
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurri� un error: " + ex.Message);
-            }
+        // Mostrar resultado
+        aguinaldo = Math.Round(aguinaldo, 2);
+        lblresultado.Text = "Su aguinaldo a recibir es de: $ " + aguinaldo;
+    }
+    else
+    {
+        MessageBox.Show("Ingrese un salario válido.");
+    }
+}
+catch (Exception ex)
+{
+    MessageBox.Show("Ocurrió un error: " + ex.Message);
+}
 
 
 
@@ -130,29 +112,29 @@ namespace Aguinaldo
 
         private void rdbdiastrab_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdbmas.Checked)
-            {
+          //  if (rdbmas.Checked)
+           // {
 
 
 
 
                 timeini.Enabled = false;
                 timeact.Enabled = false;
-                combselec.Enabled = true;
-                combselec.Items.Clear();
-                combselec.Items.Add("De 1 a 3 a�os");
-                combselec.Items.Add("De 3 a 10 a�os");
-                combselec.Items.Add("De 10 a�os en adelante");
+                //combselec.Enabled = true;
+               // combselec.Items.Clear();
+               // combselec.Items.Add("De 1 a 3 años");
+               // combselec.Items.Add("De 3 a 10 años");
+               // combselec.Items.Add("De 10 años en adelante");
                 //txtfechai.Enabled = false;
                 //  txtfechaact.Enabled = false;
-            }
-            if (!rdbmas.Checked)
-            {
+           // }
+            //if (!rdbmas.Checked)
+           // {
                 timeini.Enabled = true;
                 timeact.Enabled = true;
-                combselec.Enabled = false;
-                combselec.Items.Clear();
-            }
+               // combselec.Enabled = false;
+               // combselec.Items.Clear();
+           // }
         }
 
         private void lbldias_Click(object sender, EventArgs e)
@@ -162,22 +144,14 @@ namespace Aguinaldo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            combselec.Enabled = true;
-            combselec.Items.Clear();
+            // combselec.Enabled = true;
+            // combselec.Items.Clear();
+            timeact.Enabled = false;
+            DateTime fechaact = new DateTime(DateTime.Now.Year, 12, 12);
+            timeact.Value = fechaact;
         }
 
-        private void rdbmenos_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbmenos.Checked)
-            {
-                combselec.Enabled = false;
-                combselec.Items.Clear();
-                //txtfechaact;
-                // txtfechaact.Enabled = true;
-            }
-
-
-        }
+      
 
         private void lblresultado_Click(object sender, EventArgs e)
         {
