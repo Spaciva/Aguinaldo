@@ -57,7 +57,7 @@ namespace Aguinaldo
         DateTime fechain = timeini.Value;
 
         // Calcular días trabajados
-        int diasTrabajados = (fechaact.Date - fechain.Date).Days+1;
+        int diasTrabajados = (fechaact.Date - fechain.Date).Days;
         MessageBox.Show("Días trabajados: " + diasTrabajados);
 
         // Calcular años trabajados
@@ -78,8 +78,10 @@ namespace Aguinaldo
         }
         else
         {
-            // Menos de 1 año → proporcional
-            aguinaldo = (salday * 15) * (diasTrabajados / 365m);
+                        // Menos de 1 año → proporcional
+           decimal aguinaldobase= salday*15;
+
+            aguinaldo = aguinaldobase * (diasTrabajados / 365m);
         }
 
         // Mostrar resultado
